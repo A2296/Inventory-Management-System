@@ -2,19 +2,27 @@
 const express = require('express');
 const router = express.Router(); // Create a router instance for product-related routes
 
+//import the authentication middleware to protect  routes
+const {protect} = require('../Middleware/Auth'); // Import the protect middleware to secure routes
+
+//import authorization middleware
+const { authorize } = require('../Middleware/Role'); //Import the authorization middleware to check user roles
+
+
 //Import the product controller 
 const productController = require('../Controllers/ProductController');
 
+
 //Define the routes for product-related operations
-router.post('/createproduct', productController.createProduct); // Create a new product 
+router.post('/createproduct', protect, authorize('superadmin'), productController.createProduct); // Create a new product 
 
-router.put('/updateproduct/:id', productController.updateProduct); // Update a product by ID
+router.put('/updateproduct/:id', protect, authorize('superadmin', 'storekeeper'), productController.updateProduct); // Update a product by ID
 
-router.get('/getallproducts', productController.getAllProducts); // Get all products
+router.get('/getallproducts', protect, authorize('superadmin', 'storekeeper', 'salesperson'), productController.getAllProducts); // Get all products
 
-router.get('/getproduct/:id', productController.getProductById); // Get a product by ID
+router.get('/getproduct/:id', protect, authorize('superadmin', 'storekeeper', 'salesperson'), productController.getProductById); // Get a product by ID
 
-router.delete('/deleteproduct/:id', productController.deleteProduct); // Delete a product by ID
+router.delete('/deleteproduct/:id', protect, authorize('superadmin'), productController.deleteProduct); // Delete a product by ID
 
 //Export the router for use in other parts of the application
 module.exports = router;

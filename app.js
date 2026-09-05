@@ -12,7 +12,8 @@
 
 const express = require('express');
 const productRoute = require('./Routes/ProductRoute'); //Import the product route
-const userRoute = require('./Routes/UserRoute');
+const userRoute = require('./Routes/UserRoute'); //Import the user route
+//const invoiceRoute = require('./Routes/InvoiceRoute'); //Import the invoice route 
 
 const dotenv = require('dotenv');
 
@@ -34,8 +35,10 @@ app.use(express.json());
 app.use('/products', productRoute); //use the product route for all requests starting with /products
 
 app.use('/users', userRoute); ////use the user route for all requests starting with /users
+  
+//app.use('/invoices', invoiceRoute); //use the invoice route for all requests starting with /invoices
 
 app.listen(PORT, () => {
-  console.log(`Server is running on port PORT`);
+  console.log(`Server is running on port ${PORT}`);
 });
 

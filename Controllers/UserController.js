@@ -112,7 +112,7 @@ exports.loginUser = async (req, res) => {
 
         const jwt = require('jsonwebtoken');
 
-        const token = jwt.sign({ id: user._id, email: user.email, name: user.name}, process.env.JWT_SECRET, {expiresIn: '1h'});
+        const token = jwt.sign({ id: user._id, email: user.email, name: user.name, HasAdminAccess: user.HasAdminAccess }, process.env.JWT_SECRET, {expiresIn: process.env.Expires});
 
         // If credentials are correct, send a success response
         res.status(200).json({ message: 'Login successful', token });
@@ -168,7 +168,8 @@ module.exports = {
     getUserById: exports.getUserById,
     updateUser: exports.updateUser,
     deleteUser: exports.deleteUser,
-    loginUser: exports.loginUser
+    loginUser: exports.loginUser,
+    jwt: exports.jwt
 };
 
 //Note: The above code is a basic implementation of a UserController in an Express.js application.
