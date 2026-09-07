@@ -41,7 +41,7 @@ Create a `.env` file in the root directory:
 
 ```env
 PORT=5000
-MONGO_URI=mongodb://localhost:27017/inventory-db
+MONGO_URI=mongodb://localhost:0000/database-name
 JWT_SECRET=your_jwt_secret_here
 JWT_EXPIRES_IN=1d
 ```
