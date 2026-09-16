@@ -53,6 +53,12 @@ exports.createUser = async (req, res) => {
             HasAdminAccess: req.body.HasAdminAccess ||false // Default is false if not provided
         });
         await user.save();
+
+        //Email notification: Send an email notification when a new user is created
+        const subject = 'New User Created';
+        const text = `A new user has been created:\n\nName: ${user.name}\nEmail: ${user.email}\nGender: ${user.gender}\nPhone: ${user.phone}\nRole: ${user.role}\nHas Admin Access: ${user.HasAdminAccess}`;
+        await sendEmail(process.env.EMAIL_USER, subject, text);
+        
         res.status(201).json({ message: 'User created successfully', user });
     } catch (error) {
         res.status(400).json({ message: error.message });

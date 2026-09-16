@@ -12,17 +12,22 @@ const { authorize } = require('../Middleware/Role'); //Import the authorization 
 //Import the product controller 
 const productController = require('../Controllers/ProductController');
 
+//Import the upload middleware for handling file uploads
+const upload = require('../Middleware/upload');
+
 
 //Define the routes for product-related operations
-router.post('/createproduct', protect, authorize('superadmin'), productController.createProduct); // Create a new product 
+router.post('/createproduct', protect, productController.createProduct); // Create a new product 
 
-router.put('/updateproduct/:id', protect, authorize('superadmin', 'storekeeper'), productController.updateProduct); // Update a product by ID
+router.put('/updateproduct/:id', protect, productController.updateProduct); // Update a product by ID
 
-router.get('/getallproducts', protect, authorize('superadmin', 'storekeeper', 'salesperson'), productController.getAllProducts); // Get all products
+router.get('/getallproducts', protect, productController.getAllProducts); // Get all products
 
-router.get('/getproduct/:id', protect, authorize('superadmin', 'storekeeper', 'salesperson'), productController.getProductById); // Get a product by ID
+router.get('/getproduct/:id', protect, productController.getProductById); // Get a product by ID
 
-router.delete('/deleteproduct/:id', protect, authorize('superadmin'), productController.deleteProduct); // Delete a product by ID
+router.delete('/deleteproduct/:id', protect, productController.deleteProduct); // Delete a product by ID
+
+router.post('/uploadproductimage', protect, productController.uploadProductImage); // Upload a product image to the cloud
 
 //Export the router for use in other parts of the application
 module.exports = router;
