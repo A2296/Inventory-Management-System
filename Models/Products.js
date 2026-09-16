@@ -39,7 +39,11 @@ const ProductSchema = new mongose.Schema({
   },
   expiryDate: {
     type: Date,
-    required: true
+    required: false
+  },
+  image: {
+    type: String,
+    required: false
   },
 
 },

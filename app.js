@@ -28,6 +28,7 @@ connectDB(); //Call the connectDB function to establish a connection to the Mong
 const PORT = process.env.PORT; //Set the port for the server to listen on
 
 
+//app.use('/products/uploadproducctimage', (req, res, next) => next()); // Middleware to handle file uploads for product images
 // Middleware to parse JSON request bodies
 app.use(express.json()); 
 
