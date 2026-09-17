@@ -40,8 +40,8 @@ npm install
 Create a `.env` file in the root directory:
 
 ```env
-PORT=5000
-MONGO_URI=mongodb://localhost:0000/database-name
+PORT= PORT Number
+MONGO_URI=mongodb:database-connection-string/database-name
 JWT_SECRET=your_jwt_secret_here
 JWT_EXPIRES_IN=1d
 ```
@@ -56,7 +56,7 @@ npm run dev
 npm start
 ```
 
-The API will be available at `http://localhost:5000` (or your configured `PORT`).
+The API will be available at `http://localhost:PORT-NUMBER/NAME` (or your configured `PORT`).
 
 ## API Endpoints
 
@@ -116,4 +116,4 @@ The API will be available at `http://localhost:5000` (or your configured `PORT`)
 
 ## License
 
-Not yet decided.
+Apache 2.0.
